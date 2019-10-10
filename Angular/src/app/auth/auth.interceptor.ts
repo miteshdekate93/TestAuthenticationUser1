@@ -1,4 +1,4 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpUserEvent, HttpEvent } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpUserEvent, HttpEvent } from '@angular/common/http';
 import { UserService } from '../shared/user.service';
 import 'rxjs/add/operator/do';
 import { Injectable } from '@angular/core';
@@ -22,12 +22,12 @@ export class AuthInterceptor implements HttpInterceptor {
             });
             return next.handle(clonedreq)
                 .do(
-                succ => { },
-                err => {
-                    if (err.status === 401) {
-                        this.router.navigateByUrl('/login');
+                    succ => { },
+                    err => {
+                        if (err.status === 401) {
+                            this.router.navigateByUrl('/login');
+                        }
                     }
-                }
                 );
         } else {
             this.router.navigateByUrl('/login');

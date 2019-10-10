@@ -9,20 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  isLoginError : boolean = false;
-  constructor(private userService : UserService,private router : Router) { }
+  isLoginError = false;
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  OnSubmit(userName,password){
-     this.userService.userAuthentication(userName,password).subscribe((data : any)=>{
-      localStorage.setItem('userToken',data.access_token);
+  // tslint:disable-next-line: one-line
+  OnSubmit(userName, password) {
+    this.userService.userAuthentication(userName, password).subscribe((data: any) => {
+      localStorage.setItem('userToken', data.access_token);
       this.router.navigate(['/home']);
     },
-    (err : HttpErrorResponse)=>{
-      this.isLoginError = true;
-    });
+      (err: HttpErrorResponse) => {
+        this.isLoginError = true;
+      });
   }
 
 }
